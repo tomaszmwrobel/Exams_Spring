@@ -101,6 +101,11 @@ public class Exam {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public void clearQuestions() {
+		this.questions.clear();
+		
+	}
 	
 	
 	

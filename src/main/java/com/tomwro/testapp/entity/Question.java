@@ -91,6 +91,10 @@ public class Question {
 		this.countCorrectAnswers = countCorrectAnswers;
 	}
 	
-	
+	public List<Answer> clearAnswer()
+	{
+		this.setAllAnswers(null);
+		return this.getAllAnswers();
+	}
 
 }

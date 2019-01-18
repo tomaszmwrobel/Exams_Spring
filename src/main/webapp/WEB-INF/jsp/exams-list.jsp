@@ -11,9 +11,6 @@
 </head>
 
 <body>
-	<input type="button" value="Add New Exam"
-		onclick="window.location.href='showFormForAdd' ; return false;"
-		class="add-button" />
 
 	<br>
 	<form action="<c:url value="exams/showFormForAdd" />" method="GET">
@@ -32,10 +29,10 @@
 		</tr>
 
 		<c:forEach var="tempExams" items="${exams}">
-			<!--<c:url var="listQuestions"
-				value="${pageContext.request.contextPath}/questions">
+			<c:url var="makeExam"
+				value="exams/makeExam">
 				<c:param name="examId" value="${tempExams.id}" />
-			</c:url>-->
+			</c:url>
 
 			<c:url var="updateLink" value="/exams/showFormForUpdate">
 				<c:param name="examId" value="${tempExams.id}" />
@@ -56,6 +53,8 @@
 				<td><a href="${updateLink}">Update</a>
 				|
 				<a href="${deleteLink}">Delete</a>
+				
+				<a href="${makeExam}">MakeExam</a>
 				</td>
 			</tr>
 

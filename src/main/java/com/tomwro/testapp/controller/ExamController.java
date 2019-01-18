@@ -27,6 +27,8 @@ public class ExamController {
 	{
 		List<Exam> exams = examService.getExams();
 		
+		
+		
 		theModel.addAttribute("exams",exams);
 		
 		return "exams-list";
@@ -51,6 +53,8 @@ public class ExamController {
 		
 		theModel.addAttribute("exam",theExam);
 		
+		
+		
 		return"exam-form";
 	}
 	
@@ -66,6 +70,21 @@ public class ExamController {
 	{
 		examService.deleteExam(theId);
 		return"redirect:/exams";
+	}
+	
+	@GetMapping("/makeExam")
+	public String makeExam(
+			@RequestParam("examId") int theId,
+			Model theModel
+			)
+	{
+		Exam theExam = examService.getExam(theId);
+		
+		theModel.addAttribute("exam",theExam);
+		
+		
+		
+		return "exam-make";
 	}
 	
 	

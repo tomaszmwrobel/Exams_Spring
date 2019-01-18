@@ -68,6 +68,23 @@ public class QuestionController {
 		return"redirect:/questions";
 	}
 	
+	@GetMapping("/check")
+	public String checkOne(Model theModel)
+	{
+		Question theQuestion = questionService.getQuestion(1);
+		
+		theModel.addAttribute("questions2",theQuestion);
+		
+		Question theQuestion3 = questionService.getQuestion(6);
+		
+		theModel.addAttribute("questions3",theQuestion3);
+		//theModel.addAttribute("answers2", theQuestion.getAllAnswers().toArray());
+		
+		
+		
+		return "answer-question";
+	}
+	
 	
 
 }
