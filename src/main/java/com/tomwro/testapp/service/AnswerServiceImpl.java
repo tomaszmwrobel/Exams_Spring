@@ -1,5 +1,6 @@
 package com.tomwro.testapp.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,25 @@ public class AnswerServiceImpl implements AnswerService{
 	public void deleteAnswer(int theId) {
 
 		answerDAO.deleteAnswer(theId);
+	}
+
+	@Override
+	@Transactional
+	public int checkAnswers(Collection<String> values) {
+		
+		int positive = 0;
+		for (String string : values) {
+			int id = Integer.parseInt(string);
+			Answer tmp =answerDAO.getAnswer(id);
+			
+			if(tmp.getCorrect()==true)
+			{
+				positive++;
+			}
+			
+		}
+		
+		return positive;
 	}
 
 }

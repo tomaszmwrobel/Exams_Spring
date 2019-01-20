@@ -1,10 +1,12 @@
 package com.tomwro.testapp.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +48,7 @@ public class ExamController {
 	@GetMapping("/showFormForUpdate")
 	public String showFormForUpdate(
 			@RequestParam("examId") int theId,
+			
 			Model theModel
 			)
 	{
@@ -57,6 +60,14 @@ public class ExamController {
 		
 		return"exam-form";
 	}
+	@GetMapping("/showFormForUpdateId")
+	public String showFormForUpdateBack(
+				@RequestParam ("exam.id")int theId,
+				Model theModel)
+	{
+		return"redirect:/exams/showFormForUpdate?examId="+theId;
+	}
+	
 	
 	@PostMapping("/saveExam")
 	public String saveExam(@ModelAttribute("exam") Exam theExam)
@@ -85,6 +96,16 @@ public class ExamController {
 		
 		
 		return "exam-make";
+	}
+	
+	@GetMapping("questions/check")
+	public String checkAnswers(
+			@RequestParam Map<String,String> allRequestParams, 
+			ModelMap model)
+	{
+		return "redirect:/questions";
+	
+		
 	}
 	
 	

@@ -96,5 +96,14 @@ public class Question {
 		this.setAllAnswers(null);
 		return this.getAllAnswers();
 	}
+	
+	public void setExamId(int theId)
+	{
+		if(this.exam==null)
+		{
+			this.exam= new Exam();
+		}
+		this.exam.setId(theId);
+	}
 
 }

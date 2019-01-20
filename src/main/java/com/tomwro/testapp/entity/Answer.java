@@ -62,6 +62,14 @@ public class Answer {
 		this.body = body;
 	}
 	
+	public void setQuestionId(int theId)
+	{
+		if(this.question ==null)
+		{
+			this.question = new Question();
+		}
+		this.question.setId(theId);
+	}
 	
 
 }

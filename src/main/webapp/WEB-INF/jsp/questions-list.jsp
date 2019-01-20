@@ -12,7 +12,9 @@
 
 <body>
 
-<form action="<c:url value="questions/showFormForAdd" />" method="GET">
+	<form
+		action="<c:url value="${pageContext.request.contextPath}questions/showFormForAdd" />"
+		method="GET">
 		<input type="submit" value="Add New Questions" />
 	</form>
 	<table>
@@ -26,7 +28,7 @@
 		</tr>
 
 		<c:forEach var="tempQuestions" items="${questions}">
-			
+
 			<c:url var="updateLink" value="/questions/showFormForUpdate">
 				<c:param name="questionId" value="${tempQuestions.id}" />
 
@@ -45,10 +47,8 @@
 				<td>${tempQuestions.countCorrectAnswers }</td>
 
 
-				<td><a href="${updateLink}">Update</a>
-				|
-				<a href="${deleteLink}">Delete</a>
-				</td>
+				<td><a href="${updateLink}">Update</a> | <a
+					href="${deleteLink}">Delete</a></td>
 			</tr>
 
 		</c:forEach>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.tomwro.testapp.entity.Question;
 import com.tomwro.testapp.service.QuestionService;
 
+
 @Controller()
 @RequestMapping("/questions")
 public class QuestionController {
@@ -32,9 +33,24 @@ public class QuestionController {
 	}
 	
 	@GetMapping("/showFormForAdd")
-	public String showFormForAdd(Model theModel)
+	public String showFormForAdd(
+			@RequestParam(name="id" ,required=false)Integer theId,
+			@RequestParam(name="name" ,required=false)String examName,
+			Model theModel)
 	{
+		System.out.println(theId);
 		Question theQuestion = new Question();
+		if(theId!=null)
+		{
+			
+			theQuestion.setExamId(theId);
+			theModel.addAttribute("examId", theId);
+		}
+		
+		if(examName!=null)
+		{
+			theModel.addAttribute("examName",examName);
+		}
 		theModel.addAttribute("question",theQuestion);
 		
 		return "question-form";
@@ -53,12 +69,21 @@ public class QuestionController {
 		
 		return"question-form";
 	}
+	@GetMapping("/showFormForUpdateBack")
+	public String showFormForUpdateBack(
+				@RequestParam ("question.id")int theId,
+				Model theModel)
+	{
+		return"redirect:/questions/showFormForUpdate?questionId="+theId;
+	}
+	
+	
 	
 	@PostMapping("/saveQuestion")
 	public String saveExam(@ModelAttribute("question") Question theQuestion)
 	{
 		questionService.saveQuestion(theQuestion);
-		return "redirect:/questions";
+		return "redirect:/exams/showFormForUpdate?examId="+theQuestion.getExam().getId();
 	}
 	
 	@GetMapping("/delete")
@@ -78,11 +103,18 @@ public class QuestionController {
 		Question theQuestion3 = questionService.getQuestion(6);
 		
 		theModel.addAttribute("questions3",theQuestion3);
-		//theModel.addAttribute("answers2", theQuestion.getAllAnswers().toArray());
-		
-		
-		
+
 		return "answer-question";
+	}
+	
+	@GetMapping("/check/send")
+	public String checkAnswers(
+			@RequestParam("questions") List<Question> questions,
+			
+			Model theModel)
+	{
+		
+		return "redirect:/questions";
 	}
 	
 	
