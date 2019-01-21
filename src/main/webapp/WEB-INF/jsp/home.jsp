@@ -1,17 +1,19 @@
 <%@ taglib  prefix = "form" uri = "http://www.springframework.org/tags/form" %>
 <%@ taglib  prefix = "security" uri = "http://www.springframework.org/security/tags" %>
+<jsp:include page="common.jsp"/>
 <html>
 <head>
 <title>Home Page</title>
 </head>
 
 <body>
+<hr>
 <h1> Home Page </h1>
 <br>
 
 
 
-<a href="/loginPage">Login</a>
+<a href="/login-page">Login</a>
 <br>
 
 <a href="/api">API MAIN PAGE</a>

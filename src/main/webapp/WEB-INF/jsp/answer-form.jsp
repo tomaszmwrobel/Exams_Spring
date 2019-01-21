@@ -1,5 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<jsp:include page="common.jsp"/>
 <!DOCTYPE html>
 
 <html>

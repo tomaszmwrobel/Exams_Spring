@@ -1,3 +1,4 @@
+<jsp:include page="common.jsp"/>
 <html>
 
 <head>
