@@ -6,22 +6,29 @@
 
 <html>
 <head>
-<title>Save Exam</title>
+<title>Results</title>
 </head>
 <body>
-	<h2>Save Exam</h2>
+<div class="container" style="margin-top:30px">
+	<h2>Result exam</h2>
 
-<h3>Result</h3>
 <br>
 
-<c:out value="${result}"></c:out>
+You score: <c:out value="${result}"></c:out>
 <br>
-Of
-Max Points: <c:out value="${max}"></c:out>
+Of Max Points: <c:out value="${max}"></c:out>
 <br>
 It is <c:out value="${pr}"></c:out> %
+<br>
+<c:if test="${pass==true}">
+You pass
+</c:if>
 
+<c:if test="${pass==false}">
+You Fail
+</c:if>
 
+</div>
 
 
 </body>

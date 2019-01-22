@@ -89,12 +89,22 @@ public class AnswerController {
 		Integer positiveAnswers = answerService.checkAnswers(allRequestParams.values());
 		
 		System.out.println(positiveAnswers);
-		Integer max = 10;
+		Integer max = 10; 					//static value, to correct
 		Double p = positiveAnswers.doubleValue();
 		Double pr = (p/10)*100.0;
 		model.addAttribute("result", positiveAnswers.toString());
 		model.addAttribute("max", max.toString());
 		model.addAttribute("pr", pr.toString());
+		
+		if(p>=5)
+		{
+			model.addAttribute("pass", true);
+		}
+		else
+		{
+			model.addAttribute("pass", false);
+		}
+		
 		
 		return "exam-result";
 		

@@ -17,5 +17,11 @@ public class HomeController {
 	{
 		return "test";
 	}
+	
+	@GetMapping("/admin")
+	public String adminPanel()
+	{
+		return "admin-panel";
+	}
 
 }

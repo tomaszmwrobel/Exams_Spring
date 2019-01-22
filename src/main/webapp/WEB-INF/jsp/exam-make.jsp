@@ -13,16 +13,18 @@
 
 <body>
 
+	
+
+	<div class="container" style="margin-top:30px">
 	<h3>Make An Exam Good Luck!</h3>
+	<hr>
 	<br>
-
-
 	<form:form action="${pageContext.request.contextPath}/answers/check"
 		modelAttribute="exam" method="GET">
 		<c:forEach var="tempQ" items="${exam.questions}" varStatus="s">
 			<table>
 				<tr>
-					<td><h4>${tempQ.content}</h4></td>
+					<td><h4>${s.index+1}. ${tempQ.content}</h4></td>
 				</tr>
 
 
@@ -31,19 +33,18 @@
 						<tr>
 							<td><form:radiobutton
 									path="questions[${s.index}].allAnswers" value="${tempA.id}" />
-
 								${tempA.body}</td>
 						</tr>
 					</table>
 				</c:forEach>
 			</table>
 		</c:forEach>
-		<td><label></label>
-		<td>
-		<td><input type="submit" value="save" /></td>
+		
+		<br>
+		<td><input type="submit" value="Submit" class="btn btn-primary"/></td>
 	</form:form>
 
-
+	</div>
 
 </body>
 

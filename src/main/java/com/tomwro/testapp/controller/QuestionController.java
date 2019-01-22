@@ -82,6 +82,7 @@ public class QuestionController {
 	@PostMapping("/saveQuestion")
 	public String saveExam(@ModelAttribute("question") Question theQuestion)
 	{
+		theQuestion.setCountCorrectAnswers(1); //static value = temporary
 		questionService.saveQuestion(theQuestion);
 		return "redirect:/exams/showFormForUpdate?examId="+theQuestion.getExam().getId();
 	}

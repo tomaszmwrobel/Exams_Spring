@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -29,12 +30,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-		.antMatchers("/exams/**").hasAnyRole("ADMIN","USER")
-		.antMatchers("/exams/makeExam").anonymous()
-		.antMatchers("/questions/**").hasAnyRole("ADMIN","USER")
-		.antMatchers("/answers/**").hasAnyRole("ADMIN","USER")
-		.antMatchers("/answers/check").anonymous()
+		.antMatchers("/exams/**","/questions/**","/answers/**").hasAnyRole("ADMIN","USER","TEST")
 		.antMatchers("/api/**").hasAnyRole("ADMIN")
+		.and()
+		.csrf().ignoringAntMatchers("exams/makeExam")
 		.and()
 		.formLogin()
 			.loginPage("/login-page")
@@ -49,6 +48,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		
 		
 		//super.configure(http);
+	}
+
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		
+		web.ignoring().antMatchers("/exams/makeExam", "/answers/check"); //Enable for testing app
 	}
 
 }

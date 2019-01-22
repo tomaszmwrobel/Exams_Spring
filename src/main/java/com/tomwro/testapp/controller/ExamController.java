@@ -35,11 +35,22 @@ public class ExamController {
 		
 		return "exams-list";
 	}
+	@GetMapping("/examsUser")
+	public String exmasListUser(Model theModel)
+	{
+		List<Exam> exams = examService.getExams();
+		theModel.addAttribute("exams",exams);
+		
+		return "exams-users";
+	}
 	
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model theModel)
 	{
 		Exam theExam = new Exam();
+		
+		theExam.setUserId(1); // default value for Admin // future development
+		theExam.setCode("test");
 		theModel.addAttribute("exam",theExam);
 		
 		return "exam-form";
@@ -72,6 +83,8 @@ public class ExamController {
 	@PostMapping("/saveExam")
 	public String saveExam(@ModelAttribute("exam") Exam theExam)
 	{
+		
+		theExam.setPositiveResult(5);
 		examService.saveExam(theExam);
 		return "redirect:/exams";
 	}
