@@ -22,7 +22,7 @@ public class TestappApplicationTests {
 	{
 		HomeController homeController = new HomeController();
 		
-		String result = homeController.sayHello();
+		String result = homeController.homePage();
 		
 		assertEquals("home", result);
 	}

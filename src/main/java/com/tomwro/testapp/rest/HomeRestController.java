@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 		{
 			return "Hello";
 		}
+		
+		@GetMapping("/rest")
+		public String say()
+		{
+			return "No acces test ";
+		}
 
 	}
 
